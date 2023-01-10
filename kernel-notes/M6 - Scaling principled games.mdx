@@ -78,9 +78,41 @@ In the Kernel syllabus, a link is drawn to the notion of information as a measur
 
 ## Serenity
 
+This chapter is based on the [Ethereum 2.0 Design Rationale](https://notes.ethereum.org/@vbuterin/rkhCgQteN?type=view).
+
+Two main reasons for including this stuff in the Kernel syllabus:
+
+- Exploration of low-level primitives yields possibility: While we need to look at the primitives, the intention is to walk away with a better understanding of the possibilities they imply.
+- It was mentioned previously that the best way to protect free speech is to price it correctly: defining what is "bad" and making it too expensive to consider. Ethereum 2.0 extends this idea greatly.
+
+Vitalik begins the Ethereum 2.0 Design Rationale with a series of core principles:
+
+- **Simplicity**: This (i) minimizes development costs, (ii) reduces the risk of unforeseen issues, and (iii) helps protocol designers convince users of their design.
+- **Long-term stability**: The lower levels of the protocol should be built so that there is no need to change them for a decade or longer.
+- **Sufficiency**: It should be possible to build any class of applications on top of the protocol.
+- **Defense in depth**: The protocol should work well under a variety of security assumptions.
+- **Verifiability**: A client should be able to gain assurance that the full system is available and valid, even under a 51% attack.
+
+*Proof of Work* security and miner's incentives come from (the risk of losing) block rewards. It operates on a logic of massive power incentivized by massive rewards. This is effective, but inefficient. The cost of attack and cost of defense are 1:1, so there is no defender's advantage.
+
+*Proof of Stake* breaks this symmetry - and disincentivizes lazy validators - by relying not on rewards for security, but on penalties. 
+
+Ensuring that anyone, even with entry-level hardware and a small amount of ETH, can act as a validator, reduces conflict as it means that users and validators are more likely to be the same people.
+
+The consensus algorithm used in Ethereum 2.0, *Casper the Friendly Finality Gadget*, operates not just under the "honest majority" model of 51% chains, but also the uncoordinated rational majority and worst-case models.
+
+We need to distinguish between different types of validator failure. Most are benign (like simply being offline), few are genuinely malicious. 
+
+Validators must attest to what they believe to be the head of the chain in each epoch (~ every 6.5 minutes). Compliant validators receive a base reward, B, multiplied with P, the portion of validators that agree. Validators that don't are penalized with −B. 
+
+The incentives ensure that, as more validators go offline, creating a risk of blocks being prevented from being finalized, the penalty is greater. 
+
+If a validator is caught blatantly violating the rules, they get penalized in proportion to the portion of validators that were penalized around the same time. This makes sense because coordinated attacks are more dangerous and should be punished harder than isolated failures. It also incentivizes decentralization where everyone does not join one large validator pool.
+
+...If you want more details, go read the docs that are listed on the Kernel [website](https://www.kernel.community/en/learn/module-6/serenity).
 
 ---
-
+ 
 ## Inventing on principle
 
 
